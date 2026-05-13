@@ -1,4 +1,4 @@
-Este projeto, é totalmente criado e gerenciado por mim.
+Este projeto, é criado e gerenciado por mim.
 
 Tem o intuito de testar meu conhecimento, e melhorar meus tratamentos com dados para futuramente trabalhar na área.
 
