@@ -1,0 +1,21 @@
+#dia03
+
+select count (*) from clientes;
+
+select count(*) from pedidos;
+
+select cidade, count(*) from clientes group by cidade;
+
+select produto, count(*) from pedidos group by produto;
+
+select count(*) from clientes where saldo > 5000;
+
+select count(*) from pedidos where valor < 1000;
+
+select idade, count(*) from clientes group by idade; 
+
+select cliente_id, count(*) from pedidos group by cliente_id;
+
+select cidade, count(*) as qtd from clientes group by cidade order by qtd desc;
+
+select produto, count(*) as qtd from pedidos group by produto order by qtd desc;

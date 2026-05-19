@@ -1,0 +1,21 @@
+#dia06
+
+select avg(saldo) from clientes;
+
+select avg(idade) from clientes;
+
+select max(saldo) from clientes;
+
+select min(saldo) from clientes;
+
+select cidade, avg(saldo) from clientes group by cidade;
+
+select max(valor) from pedidos;
+
+select min(valor) from pedidos;
+
+select produto, avg(valor) as media from pedidos group by produto;
+
+select cidade, avg(saldo) as media from clientes group by cidade order by avg(saldo) desc limit 1;
+
+select produto, avg(valor) as media from pedidos group by produto order by avg(valor) desc limit 1;

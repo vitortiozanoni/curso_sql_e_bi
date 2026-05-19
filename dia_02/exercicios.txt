@@ -1,0 +1,21 @@
+#dia02
+
+select * from clientes where saldo > 5000;
+
+select * from clientes where idade > 30;
+
+select * from pedidos where valor < 1000;
+
+select * from clientes where cidade = 'São Paulo'
+
+select * from pedidos where valor > 3000;
+
+select * from clientes where saldo > 4000;
+
+select * from pedidos where produto = 'Notebook';
+
+select * from clientes where idade < 25;
+
+select * from pedidos where valor >= 2000;
+
+select * from clientes where cidade = 'Campinas'

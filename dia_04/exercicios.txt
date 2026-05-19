@@ -1,0 +1,62 @@
+DIA 4 — ORDER BY E LIMIT
+1
+
+Mostre os 5 clientes com maior saldo.
+
+2
+
+Mostre os 10 clientes mais velhos.
+
+3
+
+Mostre os 5 menores pedidos.
+
+4
+
+Mostre os pedidos mais caros primeiro.
+
+5
+
+Mostre os clientes em ordem alfabética.
+
+6
+
+Mostre as cidades em ordem alfabética.
+
+7
+
+Mostre os 3 maiores pedidos.
+
+8
+
+Mostre os 8 menores saldos.
+
+9
+
+Mostre os produtos em ordem alfabética.
+
+10
+
+Mostre os clientes mais jovens primeiro.
+
+RESPOSTAS
+
+#dia04
+
+select nome, saldo from  clientes order by saldo desc limit 5;
+
+select nome, idade from clientes order by idade desc limit 10;
+
+select produto, valor from pedidos order by valor limit 5;
+
+select produto, valor from pedidos order by valor desc;
+
+select cidade from clientes group by cidade order by cidade;
+
+select * from pedidos order by valor desc limit 3;
+
+select * from pedidos limit 8;
+
+select produto from pedidos group by produto order by produto;
+
+select * from clientes order by idade;

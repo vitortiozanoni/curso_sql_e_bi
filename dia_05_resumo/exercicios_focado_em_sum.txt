@@ -1,0 +1,21 @@
+#dia05
+
+select sum(saldo) from clientes;
+
+select sum(valor) from pedidos;
+
+select cidade, sum(saldo) from clientes group by cidade;
+
+select cliente_id, sum(valor) from pedidos group by cliente_id;
+
+select produto, sum(valor) from pedidos group by produto;
+
+select cidade, sum(saldo) from clientes group by cidade order by sum(saldo) desc;
+
+select cliente_id, sum(valor) from pedidos group by cliente_id order by sum(valor) desc;
+
+select sum(valor) from pedidos where valor > 1000;
+
+select sum(saldo) from clientes where idade > 30
+
+select cliente_id, sum(valor) from pedidos group by cliente_id order by sum(valor) desc;
