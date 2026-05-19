@@ -1,0 +1,33 @@
+create table clientes(
+    cliente_id SERIAL primary key,
+    nome varchar(30),
+    idade INT,
+    cidade varchar (30),
+    saldo decimal(10,2)
+
+);
+
+select * from clientes
+
+select * from clientes where nome = 'Gabriel'
+select * from clientes where cidade != 'Vinhedo' and cidade != 'Campinas'
+select * from clientes where idade > 25;
+
+
+select * from clientes where idade > 30;
+
+select * from clientes where cidade = 'Campinas';
+
+select * from clientes where saldo < 1000;
+
+select * from clientes where nome = 'Carlos';
+
+select * from clientes where cidade = 'São Paulo' and saldo > 5000;
+
+select * from clientes where cidade != 'Campinas';
+
+select * from clientes where idade >= 20 and idade <= 30;
+
+select * from clientes where saldo > 10000;
+
+select * from clientes where nome = 'Ana' and cidade = 'Campinas'

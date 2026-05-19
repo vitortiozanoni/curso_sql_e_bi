@@ -1,0 +1,15 @@
+select count() from clientes where saldo > 5000;
+select count() from clientes where idade > 30;
+select count() from clientes where cidade != 'Campinas';
+
+SELECT cidade,
+FROM clientes
+GROUP BY cidade;
+
+SELECT cidade, COUNT() as quantidadeDePessoas
+FROM clientes
+GROUP BY cidade;
+
+select nome, count(*)
+from clientes
+group by nome;
