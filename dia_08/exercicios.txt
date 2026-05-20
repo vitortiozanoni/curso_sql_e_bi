@@ -1,0 +1,130 @@
+#dia08
+
+select clientes.nome, pedidos.valor
+from clientes
+inner join pedidos
+on clientes.id = pedidos.cliente_id;
+
+
+select c.nome, p.produto
+from clientes c 
+inner join pedidos p
+on c.id = p.cliente_id;
+
+select c.nome, p.valor
+from clientes c 
+inner join pedidos p 
+on c.id = p.cliente_id;
+
+select c.nome, p.produto, p.valor
+from clientes c 
+inner join pedidos p
+on c.id = p.cliente_id ;
+
+select c.nome, c.cidade, p.produto
+from clientes c 
+inner join pedidos p 
+on c.id = p.cliente_id;
+
+select c.nome, p.produto
+from clientes c 
+inner join pedidos p 
+on c.id = p.cliente_id
+where produto = 'Notebook';
+
+select c.nome, p.valor
+from clientes c 
+inner join pedidos p 
+on c.id = p.cliente_id
+where valor > 2000;
+
+select c.nome, p.produto, p.valor
+from clientes c 
+inner join pedidos p 
+on c.id = p.cliente_id
+order by p.valor desc;
+
+select c.nome, c.cidade, p.valor
+from clientes c 
+inner join pedidos p
+on c.id = p.cliente_id
+where c.cidade = 'São Paulo';
+
+select c.nome, p.produto, p.valor
+from clientes c
+inner join pedidos p
+on c.id = p.cliente_id 
+where p.valor < 1000;
+
+select c.nome, p.produto, p.valor
+from clientes c
+inner join pedidos p
+on c.id = p.cliente_id 
+order by p.valor;
+
+select c.nome, sum(p.valor) as somaTotal
+from clientes c
+inner join pedidos p 
+on c.id = p.cliente_id
+group by c.nome ;
+
+select c.nome, count(*) as somaPedidos
+from clientes c
+inner join pedidos p
+on c.id = p.cliente_id 
+group by c.nome;
+
+select c.nome, avg(p.valor) as mediaPedidos
+from clientes c
+inner join pedidos p
+on c.id = p.cliente_id
+group by c.nome;
+
+select c.nome, max(p.valor) as maiorPedido
+from clientes c
+inner join pedidos p
+on c.id = p.cliente_id
+group by c.nome
+order by max(p.valor) desc limit 1;
+
+select c.nome, min(p.valor) as menorPedido
+from clientes c
+inner join pedidos p
+on c.id = p.cliente_id 
+group by c.nome
+order by min(p.valor) limit 1;
+
+select c.nome, sum(p.valor) as SomaValores
+from clientes c
+inner join pedidos p
+on c.id = p.cliente_id
+group by c.nome
+order by sum(p.valor) desc;
+
+select c.nome, count(*) as quantidadePedidos
+from clientes c 
+inner join pedidos p
+on c.id = p.cliente_id
+group by c.nome 
+order by quantidadepedidos desc;
+
+select c.nome, avg(p.valor) as mediaPedidos
+from clientes c
+inner join pedidos p 
+on c.id = p.cliente_id
+group by c.nome
+order by mediaPedidos desc;
+
+select c.nome, sum(p.valor) as somaValores
+from clientes c
+inner join pedidos p
+on c.id = p.cliente_id 
+group by c.nome 
+order by sum(p.valor) desc limit 5;
+
+select c.nome, avg(p.valor)
+from clientes c
+inner join pedidos p 
+on c.id = p.cliente_id
+group by c.id, c.nome
+order by avg(p.valor) desc limit 3;

@@ -1,0 +1,130 @@
+#dia01
+
+select * from  clientes;
+
+select nome, cidade from clientes;
+
+select nome, saldo from clientes;
+
+select idade from clientes;
+
+select nome, idade, cidade from clientes;
+
+select * from pedidos;
+
+select produto, valor from pedidos;
+
+select cliente_id, produto from pedidos;
+
+select id_pedido, valor from pedidos;
+
+select nome, saldo, cidade from clientes;
+
+#dia02
+
+select * from clientes where saldo > 5000;
+
+select * from clientes where idade > 30;
+
+select * from pedidos where valor < 1000;
+
+select * from clientes where cidade = 'São Paulo'
+
+select * from pedidos where valor > 1000;
+
+select * from clientes where saldo > 4000;
+
+select * from pedidos where produto = 'Notebook';
+
+select * from clientes where idade < 25;
+
+select * from pedidos where valor >= 2000;
+
+select * from clientes where cidade = 'Campinas'
+
+#dia03
+
+select count (*) from clientes;
+
+select count(*) from pedidos;
+
+select cidade, count(*) from clientes group by cidade;
+
+select produto, count(*) from pedidos group by produto;
+
+select count(*) from clientes where saldo > 5000;
+
+select count(*) from pedidos where valor < 1000;
+
+select idade, count(*) from clientes group by idade; 
+
+select cliente_id, count(*) from pedidos group by cliente_id;
+
+select cidade, count(*) as qtd from clientes group by cidade order by qtd desc;
+
+select produto, count(*) as qtd from pedidos group by produto order by qtd desc;
+
+
+#dia04
+
+select nome, saldo from  clientes order by saldo desc limit 5;
+
+select nome, idade from clientes order by idade desc limit 10;
+
+select produto, valor from pedidos order by valor limit 5;
+
+select produto, valor from pedidos order by valor desc;
+
+select cidade from clientes order by cidade;
+
+select * from pedidos order by valor desc limit 3;
+
+select saldo from clientes order by saldo limit 8;
+
+select produto from pedidos group by produto order by produto;
+
+select * from clientes order by idade;
+
+#dia05
+
+select sum(saldo) from clientes;
+
+select sum(valor) from pedidos;
+
+select cidade, sum(saldo) from clientes group by cidade;
+
+select cliente_id, sum(valor) from pedidos group by cliente_id;
+
+select produto, sum(valor) from pedidos group by produto;
+
+select cidade, sum(saldo) from clientes group by cidade order by sum(saldo) desc;
+
+select cliente_id, sum(valor) from pedidos group by cliente_id order by sum(valor) desc;
+
+select sum(valor) from pedidos where valor > 1000;
+
+select sum(saldo) from clientes where idade > 30;
+
+select cliente_id, sum(valor) from pedidos group by cliente_id order by sum(valor) desc;
+
+#dia06
+
+select avg(saldo) from clientes;
+
+select avg(idade) from clientes;
+
+select max(saldo) from clientes;
+
+select min(saldo) from clientes;
+
+select cidade, avg(saldo) from clientes group by cidade;
+
+select max(valor) from pedidos;
+
+select min(valor) from pedidos;
+
+select produto, avg(valor) as media from pedidos group by produto;
+
+select cidade, avg(saldo) as media from clientes group by cidade order by avg(saldo) desc limit 1;
+
+select produto, avg(valor) as media from pedidos group by produto order by avg(valor) desc limit 1;
