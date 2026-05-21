@@ -1,0 +1,67 @@
+
+select c.nome, p.produto
+from clientes c 
+left join pedidos p
+on c.id = p.cliente_id 
+where produto != '';
+
+select * 
+from clientes c
+left join pedidos p 
+on c.id = p.cliente_id ;
+
+select c.nome, p.produto
+from clientes c
+left join pedidos p
+on c.id = p.cliente_id 
+where p.id_pedido is null ;
+
+select c.nome, count(*) as qtdPedidos
+from clientes c
+left join pedidos p
+on c.id = p.cliente_id 
+group by c.nome;
+
+select c.nome, count(p.produto) as qtdPedidos
+from clientes c
+left join pedidos p 
+on c.id = p.cliente_id 
+group by c.nome;
+
+select c.nome, avg(p.valor)  as mediaPedidos
+from clientes c
+left join pedidos p
+on c.id = p.cliente_id 
+group by c.nome;
+
+select c.nome, max(p.valor) as maiorPedido
+from clientes c
+left join pedidos p 
+on c.id = p.cliente_id 
+where p.valor is not null
+group by c.nome 
+order by max(p.valor) desc limit 1;
+
+select c.nome, min(p.valor) as maiorPedido
+from clientes c
+left join pedidos p 
+on c.id = p.cliente_id 
+where p.valor is not null
+group by c.nome 
+order by min(p.valor)
+limit 1;
+
+select c.nome, p.produto
+from clientes c 
+left join pedidos p 
+on c.id = p.cliente_id 
+where p.produto is null
+order by c.nome
+
+select c.nome, sum(p.valor)
+from clientes c
+left join pedidos p 
+on c.id = p.cliente_id 
+where p.valor is not null
+group by c.nome
+order by sum(p.valor) desc limit 5
