@@ -1,0 +1,73 @@
+#dia10
+
+SELECT cliente_id,
+SUM(valor)
+FROM pedidos
+GROUP BY cliente_id
+HAVING SUM(valor) > 5000;
+
+select c.nome, sum(p.valor)
+from clientes c
+inner join pedidos p
+on c.id = p.cliente_id 
+group by c.nome 
+having sum(p.valor) > 5000;
+
+select c.nome, count(p.produto)
+from clientes c
+inner join pedidos p
+on c.id = p.cliente_id
+group by c.nome 
+having count(p.produto) > 3;
+
+select produto, avg(valor) as media
+from pedidos p
+group by produto
+having avg(valor) > 1500;
+
+select cidade, sum(saldo)
+from clientes c
+group by c.cidade 
+having sum(saldo) > 10000;
+
+SELECT c.nome, MAX(p.valor)
+FROM clientes c
+INNER JOIN pedidos p
+ON c.id = p.cliente_id
+GROUP BY c.nome
+HAVING MAX(p.valor) > 4000
+ORDER BY MAX(p.valor) DESC;
+
+select c.nome, min(p.valor)
+from clientes c
+inner join pedidos p
+on c.id = p.cliente_id 
+group by c.nome 
+having min(p.valor) > 500
+order by min(p.valor);
+
+select p.produto, count(*) as qtdpedidos
+from pedidos p
+group by p.produto
+having count(*) > 5;
+
+select c.cidade, avg(c.saldo)
+from clientes c
+group by c.cidade
+having avg(c.saldo) > 3000;
+
+select c.nome, sum(p.valor)
+from clientes c
+inner join pedidos p 
+on c.id = p.cliente_id 
+group by c.nome 
+having sum(p.valor) > 7000
+order by sum(p.valor) desc;
+
+select c.nome, avg(p.valor)
+from clientes c
+inner join pedidos p
+on c.id = p.cliente_id
+group by c.nome 
+having avg(p.valor) > 2000
+order by avg(p.valor) desc;
