@@ -1,0 +1,117 @@
+#dia11
+
+SELECT nome,
+CASE
+WHEN saldo > 5000 THEN 'VIP'
+ELSE 'COMUM'
+END AS categoria
+FROM clientes;
+
+SELECT nome,
+CASE
+WHEN saldo > 10000 THEN 'PREMIUM'
+WHEN saldo > 5000 THEN 'VIP'
+WHEN saldo > 2000 THEN 'INTERMEDIÁRIO'
+ELSE 'COMUM'
+END AS categoria
+FROM clientes;
+
+SELECT c.cidade,
+SUM(valor) AS total,
+CASE
+WHEN SUM(valor) > 10000 THEN 'META BATIDA'
+ELSE 'META BAIXA'
+END AS status
+FROM clientes c
+inner join pedidos p
+on c.id = p.cliente_id 
+GROUP BY cidade;
+
+select c.nome, sum(c.saldo),
+case
+when sum(c.saldo) > 10000 then 'PREMIUM'
+when sum(c.saldo) > 5000 then 'VIP'
+else 'COMUM'
+end as status
+from clientes c
+group by c.nome;
+
+select c.nome, sum(p.valor),
+case
+	when sum(p.valor) > 5000 then 'ALTO'
+	when sum(p.valor) > 2000 then 'MÉDIO'
+	else 'BAIXO'
+end as soma
+from clientes c
+inner join pedidos p
+on c.id = p.cliente_id 
+group by c.nome;
+
+select c.nome, sum(p.valor),
+case
+	when sum(p.valor) > 10000 then 'META BATIDA'
+	else 'META BAIXA'
+end as status
+from clientes c 
+inner join pedidos p
+on c.id = p.cliente_id 
+group by c.nome;
+
+select c.cidade, sum(c.saldo),
+case
+	when sum(c.saldo) > 7000 then 'ALTA RENDA'
+	when sum(c.saldo) > 3000 then 'MÉDIA RENDA'
+	else 'BAIXA RENDA'
+end as classificacao
+from clientes c
+group by c.cidade;
+
+select p.produto, count(*) as qtdPedidos,
+case
+	when count(*) > 10 then 'MUITO VENDIDO'
+	when count(*) > 5 then 'VENDIDO'
+	else 'POUCO VENDIDO'
+end as popularidade
+from pedidos p 
+group by p.produto;
+
+select c.nome, max(p.valor),
+case
+	when max(p.valor) > 8000 then 'CLIENTE PREMIUM'
+	when max(p.valor) > 4000 then 'CLIENTE VIP'
+	else 'NORMAL'
+end as nivel
+from clientes c
+inner join pedidos p 
+on c.id = p.cliente_id 
+group by c.nome;
+
+select c.cidade, sum(p.valor),
+case
+	when sum(p.valor) > 20000 then 'META SUPERADA'
+	when sum(p.valor) > 10000 then 'META BOA'
+	else 'META BAIXA'
+end as situacao
+from clientes c
+inner join pedidos p
+on c.id = p.cliente_id 
+group by c.cidade;
+
+select p.produto, avg(p.valor),
+case
+	when avg(p.valor) > 5000 then 'CARO'
+	when avg(p.valor) > 2000 then 'MÉDIO'
+	else 'BARATO'
+end as faixadepreco
+from pedidos p
+group by p.produto;
+
+select c.cidade, count(*) as qtdclientes,
+case
+	when count(*) > 10 then 'GRANDE'
+	when count(*) > 5 then 'MÉDIA'
+	else 'PEQUENA'
+end as porte
+from clientes c 
+group by c.cidade 
+order by count(*) desc;

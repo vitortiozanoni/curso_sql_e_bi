@@ -1,0 +1,220 @@
+#dia12
+
+SELECT nome, saldo
+FROM clientes
+WHERE saldo > (
+    SELECT AVG(saldo)
+    FROM clientes
+);
+
+SELECT nome
+FROM clientes
+WHERE id IN (
+    SELECT cliente_id
+    FROM pedidos
+);
+
+SELECT nome
+FROM clientes
+WHERE id NOT IN (
+    SELECT cliente_id
+    FROM pedidos
+);
+
+SELECT AVG(total)
+FROM (
+    SELECT cliente_id,
+    SUM(valor) AS total
+    FROM pedidos
+    GROUP BY cliente_id
+) AS totais;
+
+SELECT nome
+FROM clientes
+WHERE id = (
+    SELECT cliente_id
+    FROM pedidos
+    GROUP BY cliente_id
+    ORDER BY SUM(valor) DESC
+    LIMIT 1
+);
+
+SELECT nome
+FROM clientes c
+WHERE EXISTS (
+    SELECT 1
+    FROM pedidos p
+    WHERE p.cliente_id = c.id
+);
+
+SELECT cidade,
+AVG(total) AS media_cidade
+FROM (
+    SELECT c.cidade,
+    SUM(p.valor) AS total
+    FROM clientes c
+    INNER JOIN pedidos p
+    ON c.id = p.cliente_id
+    GROUP BY c.nome, c.cidade
+) AS vendas_clientes
+GROUP BY cidade;
+
+SELECT AVG(media)
+FROM (
+    SELECT cidade,
+    AVG(saldo) AS media
+    FROM clientes
+    GROUP BY cidade
+) AS medias_cidade;
+
+
+select c.nome, c.saldo
+from clientes c
+where c.saldo > (
+	select avg(c.saldo) as media
+	from clientes c
+);
+
+select p.produto, p.valor
+from pedidos p
+where p.valor > (
+	select avg(p.valor)
+	from pedidos p
+);
+
+select c.nome, c.saldo
+from clientes c
+where c.saldo = (
+	select min(c.saldo)
+	from clientes c
+);
+
+select p.produto, p.valor
+from pedidos p
+where p.valor = (
+	select MAX(p.valor)
+	from pedidos p
+)
+
+select c.nome
+from clientes c
+where id in (
+	select p.cliente_id
+	from clientes c
+	inner join pedidos p
+	on c.id = p.cliente_id 
+	group by p.cliente_id
+)
+
+select c.nome
+from clientes c
+where id not in (
+	select p.cliente_id
+	from pedidos p
+	group by p.cliente_id 
+)
+
+SELECT nome, cidade, saldo
+FROM clientes c1
+WHERE saldo > (
+    SELECT AVG(c2.saldo)
+    FROM clientes c2
+    WHERE c1.cidade = c2.cidade
+);
+
+SELECT produto, valor 
+FROM pedidos
+WHERE valor = (SELECT MAX(valor) FROM pedidos);
+
+SELECT nome 
+FROM clientes
+WHERE id IN (
+    -- Essa subquery gera uma lista: [1, 3, 4, 7...]
+    SELECT cliente_id FROM pedidos
+);
+
+select cliente_id, valor
+from pedidos p
+where valor > (
+	select avg(p2.valor)
+	from pedidos p2
+	where p.cliente_id = p2.cliente_id
+);
+
+select nome, c1.idade
+from clientes c1
+where c1.idade = (
+	select min(c2.idade)
+	from clientes c2
+);
+
+select id_pedido, produto, valor
+from pedidos
+where valor > (
+	select avg(valor)
+	from pedidos p2
+);
+
+select c1.nome, c1.cidade, c1.saldo
+from clientes c1
+where c1.saldo = (
+	select max(c2.saldo)
+	from clientes c2
+	where c1.cidade = c2.cidade
+);
+
+select p1.id_pedido, p1.produto, p1.valor
+from pedidos p1
+where p1.valor = (
+	select min(p2.valor)
+	from pedidos p2
+	where p1.id_pedido = p2.id_pedido
+);
+
+select cidade, max(maximo), min(minimo)
+from (
+	select c2.cidade as cidade, max(c2.saldo) as maximo, min(c2.saldo) as minimo
+	from clientes c2
+	group by cidade
+) as tabela_fantasma
+group by cidade;
+
+select avg(qtd)
+from(
+select p2.cliente_id, count(*) as qtd
+from pedidos p2
+group by p2.cliente_id
+) as tabela_fantasma;
+
+select c.nome, c.saldo, tabela_fantasma.total_gasto 
+from (
+	select p.cliente_id, sum(p.valor) as total_gasto
+	from pedidos p
+	group by p.cliente_id
+) as tabela_fantasma
+inner join clientes c
+on c.id = tabela_fantasma.cliente_id
+where c.saldo > 5000;
+
+
+select c1.nome,c1.idade, c1.cidade
+from clientes c1
+where c1.idade > (
+	select avg(c2.idade)
+	from clientes c2
+	where c1.cidade = c2.cidade
+);
+
+select avg(qtd) as media_global_clientes_por_cidade
+from (
+	select count(c2.id) as qtd, c2.cidade
+	from clientes c2
+	group by c2.cidade
+) as tabela_fantasma;
+
+select max(tabela_fantasma.somaValores)
+from (
+	select p2.produto, sum(p2.valor) as somaValores
+	from pedidos p2
+	group by p2.produto
+) as tabela_fantasma;
